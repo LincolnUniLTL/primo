@@ -1,0 +1,16 @@
+﻿/* Vertically aligns content in Details tab.
+   To make a tidy column, descriptors are aligned right, content aligned left.
+   This modifies primo_library_css.css (see README for instructions for use).
+   To see in action: http://primo-direct-apac.hosted.exlibrisgroup.com/LIN:LULH1919 */
+
+.EXLDetailsTabContent div.EXLDetailsContent li {
+    position: relative;
+    margin-left: 10em;
+}
+
+.EXLDetailsTabContent div.EXLDetailsContent li strong {
+    position: absolute;
+    left: -10em;
+    width: 9em;
+    text-align: right;
+}
