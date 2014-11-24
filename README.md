@@ -26,4 +26,4 @@ Instructions for use:
  * Extract and open skin\branding_skin\css\mashup.css in a text file.
  * At the very very top, before any comments, add the line: @import url("YOUR-URL-HERE.css");
  * Save, rezip, and reupload to Alma.
- * Any future changes to the javascript file will take effect immediately.
+ * Any future changes to the css file will take effect immediately.
