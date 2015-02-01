@@ -1,8 +1,8 @@
 ﻿/* Add a dismissable login reminder to the top of the page.
-   Doesn't appear if the user is logged in already.
+   Doesn't appear if the user is logged in already or is on campus as you define in line 69: $campusIP = array();
    In case you have policies about cookies: the 'dismissable' part of it involves setting a cookie called 'primo_login_reminder'.
    Needs styling in your css for div#loginCloser and div#loginNote - float them both left for starters.
-   A version that takes into account user IP address is at loginreminder.js.php */
+   See in action at http://primo-direct-apac.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do?vid=LIN */
 
 var loginNoteText = "Sign in for more results and other services";
 var dismissImage = "http://library2.lincoln.ac.nz/librarysearch/images/x-button.png";
@@ -63,8 +63,20 @@ function deleteCookie(name, path, domain) {
 
 var username = getElementsByClass("EXLUserNameDisplay", "exlidUserName")[0].innerHTML.trim();
 var loggedin = (username===guestName)?false:true;
+var oncampus = <?php 
+	$oncampus = 0;
+	$userIP = $_SERVER['REMOTE_ADDR']; 
+	$campusIP = array(); // Array of regular expressions for IP addresses to include as "on campus" - eg array('/^103\.240\.5[2-5]/', '/^10\./')
+	foreach($campusIP as $ip) {
+		if (preg_match($ip,$userIP)) {
+			$oncampus = 1;
+			break;
+		}
+	}
+	echo $oncampus;
+?>;
 
-if (!loggedin && (getCookie('primo_login_reminder')!="nothanks")){
+if ((!loggedin && !oncampus) && (getCookie('librarysearch_login_reminder')!="nothanks")){
 	var loginPlace = document.getElementById("exlidUserAreaTile");
 	var loginCloser = document.createElement("div");
 	loginCloser.id = "loginCloser";
