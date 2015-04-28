@@ -25,6 +25,6 @@ function viewOnlineHandler() {
 var results = getElementsByClass('EXLSummary');
 for (i=1; i<results.length; i++) {
 	if (results[i].children[0].children[0].children[0].children[0].href != null) {
-		results[i].children[1].children[0].children[0].children[0].children[3].onclick = viewOnlineHandler;
+		results[i].children[1].children[3].children[0].children[0].children[3].onclick = viewOnlineHandler;
 	}
 }
